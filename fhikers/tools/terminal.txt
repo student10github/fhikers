@@ -1,0 +1,31 @@
+#  2 pasos para migrar BBDD con model
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+# crear super usuario
+python3 manage.py createsuperuser
+
+
+# Crear archivo para guardar las librerías utilizadas
+pip freeze > requirements.txt
+
+# instala las librerías del fichero requirements.txt en otra pc.
+python3 -m pip install -r requirements.txt
+
+# para descartar las alteraciones realizadas en local hasta el último commit realizado
+# para hacer un pull para el git local y presenta el siguiente error
+    # error: Los cambios locales de los siguientes archivos serán sobrescritos al fusionar:
+# vuelve al útlimo commit. Elimina lo que se ha hecho desde el último commit
+git checkout .
+# baja la version del servidor(github)
+git pull
+
+# Atajo para comandos Django
+CTRL + R
+escribir parte del comando deseado (Ejemplo: runserver, migrate, ...)
+
+# ayuda comando consola
+python3 manage.py help
+
+# cambios no comiteados
+git diff

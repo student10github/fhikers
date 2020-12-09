@@ -1,0 +1,9 @@
+#  2 pasos para migrar BBDD con model
+python manage.py makemigrations
+python manage.py migrate
+
+# Crear archivo para guardar las librerías utilizadas
+pip freeze > requirements.txt
+
+# instala las librerías del fichero requirements.txt en otra pc.
+python -m pip install -r requirements.txt

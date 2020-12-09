@@ -1,0 +1,25 @@
+{% extends 'ruta/base.html' %}
+
+{% block title_head %}Login{% endblock title_head %}
+
+{% block content %}
+
+    <center>
+
+        <br><br><br>
+        <h2 style="color:#34626c">Login</h2>
+        <br>
+
+        <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit">Login</button>
+        </form>
+
+        <br/>
+        <a href="/register">Sign up</a>
+        <br><br><br>
+
+    </center>
+
+{% endblock content %}

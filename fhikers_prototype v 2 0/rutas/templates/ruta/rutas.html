@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Rutas App</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js">
+
+<!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+-->
+</head>
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#FF0033;">
+    <a href="#" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Rutas App</a>
+    <a href="{% url 'index' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">DataFlair</a>
+    <a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Admin</a>
+    <a href="{% url 'upload-ruta' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Upload Rutas</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns">
+    {% for ruta in shelf %}
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ ruta.picture.url }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ ruta.titulo }}</h5>
+        <p class="card-text">{{ ruta.descripcion }}</p>
+       <div class="card-footer bg-transparent border-dark">
+       <p class="card-title">{{ruta.numero_de_etapas}}</p>
+       <p class="card-title">{{ruta.distancia}}</p>
+       <p class="card-title">{{ruta.elevacion}}</p>
+       <p class="card-title">{{ruta.tiempo_estimado}}</p>
+       <p class="card-title">{{ruta.nivel_dificultad}}</p>
+       <center>
+           <a href="update/{{ruta.id}}" class="btn btn-warning" id = '{{ruta.id}}'>edit</a>
+           <a href="delete/{{ruta.id}}" class="btn btn-danger" id = '{{ruta.id}}'>delete</a>
+        </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

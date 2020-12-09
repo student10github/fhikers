@@ -1,0 +1,53 @@
+{% extends 'ruta/rutas.html' %}
+{% load static %}
+{% block content %}
+<!--    Posts  -->
+  <center>
+      <br><br><br>
+      <div width="80%">
+        <img width="80%" src="/media/blog_img.jpg" class="img-fluid" alt="FHikers" style="color:white;">
+      </div>
+      <br><br><br>
+      <h1>Posts</h1>
+
+      <br><br>
+      {% for post in posts %}
+        <div class="card bg-light mb-3" style="max-width: 98%;" align="left">
+          <div class="card-header">
+            <strong>{{ post.title }}</strong>
+            <p class="text-right">Route reference: {{ post.id_ruta }}</p>
+          </div>
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">{{ post.creation_date }}</small></p>
+              <p class="card-text">{{ post.content }}</p>
+              <p class="text-right">Author: {{ post.id_usuario }}</p>
+              {% if request.user.is_authenticated %}
+              <div align="right">
+                <a href="update_post/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>Edit</a>
+                <a href="delete_post/{{post.id}}" class="btn btn-danger" onClick="return confirm('¿Are you sure to delete {{ post.titulo_etapa }}?');" id = '{{post.id}}'>Delete</a>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+        <br>
+      {% endfor %}
+      <br><br><br>
+  </center>
+
+  <div class="card-body">
+    {% if request.user.is_authenticated %}
+      <h5 class="card-title">Create a new post</h5>
+      <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Create Post
+        </a>
+      </p>
+      <div id="collapseExample2" class="collapse card card-body container well card">
+            <h5 style="padding-top:1em;">Create Post</h5>
+            {% include 'ruta/upload_post.html' %}
+      </div>
+    {% endif %}
+    <br><br><br>
+  </div>
+
+{% endblock content %}

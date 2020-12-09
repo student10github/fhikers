@@ -1,0 +1,35 @@
+# Obtener conteo de visitas, sesions, ...
+https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Sessions
+
+# ejemplos diversos sesiones django
+http://django-book.blogspot.com/2012/06/capitulo-12-sesiones-usuario-e.html
+
+# Blog django
+https://cosasdedevs.com/posts/crear-un-blog-con-django-parte-2-modelos-models/
+
+# La etiqueta de plantilla include - poner una plantilla dentro de otra
+# uso del filtro (|) para fechas
+# El sistema de permisos
+https://perezmartin.es/tema-6-django/
+
+# 54. Curso Django2: Usuario Personalizado - Modelo
+https://www.youtube.com/watch?v=lNxQkW1kjto
+# repositorio biblioteca
+http://www.developerpe.com/repositorios/
+https://github.com/developerpe/biblioteca/blob/master/apps/usuario/models.py
+
+# Consultas a la base de datos usando el ORM de Django (querysets)
+https://docs.djangoproject.com/en/3.1/ref/models/querysets/
+
+# ejemplos del uso de querysets
+http://juniper.thesecurityappliance.com/RedHat/django/docs/ref/models/querysets.txt
+
+# Django form field attributes accessible in templates – atributos del form que puedo llamar des de un html
+https://www.webforefront.com/django/formtemplatelayout.html
+
+# Definindo nombre de la tabla
+    class Meta:
+        db_table = 'Ruta'
+
+# Buscador
+https://www.youtube.com/watch?v=ELbE2VPOkOw

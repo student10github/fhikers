@@ -1,0 +1,47 @@
+{% extends 'ruta/rutas.html' %}
+
+{% block content %}
+
+    <center>
+        <br>
+        <h1 class="display-4 text-center alert alert-light" style="color:#34626c;">Upload Stage</h1>
+        <hr>
+
+        <form method = 'POST' enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#cfd3ce;color:#34626c;">
+                {% for field in upload_form %}
+
+                    {% if field.name == 'id_ruta' %}
+                        <tr style="display:none">
+                            <th>{{field.label}}</th>
+                            <td>{{ field }}</td>
+                            <td>{{ field.help_text }}</td>
+                        </tr>
+
+                        <!--
+                        <tr style="display:none">
+                            <th>Id ruta</th>
+                            <td><input type="text" name="id_ruta" maxlength="10" required="" id="id_id_ruta" value="{{ruta_data.id}}"></td>
+                            <td></td>
+                        </tr>
+                        -->
+                    {% else %}
+                        <tr>
+                            <th>{{field.label}}</th>
+                            <td>{{ field }}</td>
+                            <td>{{ field.help_text }}</td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+            </table>
+
+            <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+
+        </form>
+    </center>
+    <br><br><br>
+
+{% endblock %}

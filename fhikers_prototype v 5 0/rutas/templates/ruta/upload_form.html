@@ -1,0 +1,110 @@
+{% extends 'ruta/rutas.html' %}
+
+{% block content %}
+
+    <center>
+        <br>
+        <h1 class="display-4 text-center alert alert-light" style="color:#34626c;">Upload Rutas</h1>
+        <hr>
+
+        <form method = 'POST' enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#cfd3ce;color:#34626c;">
+                {% for field in upload_form %}
+
+                    {% if field.name == 'id_usuario' %}
+                        <tr style="display:none">
+                            <th>Id usuario</th>
+                            <td><input type="text" name="id_usuario" maxlength="10" required="" id="id_id_usuario" value="{{request.user.id}}"></td>
+                            <td></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <th>{{field.label}}</th>
+                            <td>{{ field }}</td>
+                            <td>{{ field.help_text }}</td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+            </table>
+
+
+            <!--
+            <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#cfd3ce;color:#34626c;">
+
+                <tr>
+                    <th>Foto</th>
+                    <td><input type="file" name="foto" accept="image/*" required="" id="id_foto"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Titulo</th>
+                    <td><input type="text" name="titulo" maxlength="100" required="" id="id_titulo"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Descripcion</th>
+                    <td><input type="text" name="descripcion" maxlength="255" required="" id="id_descripcion"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Distancia</th>
+                    <td><input type="text" name="distancia" maxlength="10" required="" id="id_distancia"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Elevacion</th>
+                    <td><input type="text" name="elevacion" maxlength="10" required="" id="id_elevacion"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Tiempo estimado</th>
+                    <td><input type="text" name="tiempo_estimado" required="" id="id_tiempo_estimado"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Nivel dificultad</th>
+                    <td><input type="text" name="nivel_dificultad" maxlength="10" required="" id="id_nivel_dificultad"></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>Numero de etapas</th>
+                    <td><input type="number" name="numero_de_etapas" required="" id="id_numero_de_etapas"></td>
+                    <td></td>
+                </tr>
+
+                <tr style="display:none">
+                    <th>Id usuario</th>
+                    <td><input type="text" name="id_usuario" maxlength="10" required="" id="id_id_usuario" value="{{request.user.id}}"></td>
+                    <td></td>
+                </tr>
+
+                <!--
+                <tr>
+                    <th>Id usuario</th>
+                    <td><select name="id_usuario" id="id_id_usuario" etiqueta="" html="" class="">
+                        <option selected="" value="{{request.user.id}}">{{request.user.id}}</option>
+                    </select></td>
+                    <td></td>
+                </tr>
+                --
+
+            </table>
+            -->
+
+            <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+
+        </form>
+    </center>
+    <br><br><br>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'ruta/rutas.html' %}
+
+{% block content %}
+
+<center>
+    <br><br><br>
+    <h2 style="color:#34626c">Users Area</h2>
+    <hr/>
+    <p>
+        Welcome <b>{{request.user.username}}, id:{{request.user.id}}</b>,
+        this page is exclusively for registered users.
+    </p>
+    <br><br><br><br>
+</center>
+
+
+{% if request.user.is_authenticated %}
+        <div id="my_routes">
+            <br><br><br>
+            <h1 class="text-center alert alert-light">My Routes {{ total }}</h1>
+            <hr>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Foto</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Days</th>
+                  <th scope="col">Distance</th>
+                  <th scope="col">Elevation</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Difficulty</th>
+                  {% if request.user.is_authenticated %}
+                  <th scope="col">Action</th>
+                  {% else %}
+                  {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+              {% for ruta in shelf %}
+                <tr>
+                  <th scope="row">{{ ruta.id }}</th>
+                  <td><img class="card-img-top" src="{{ ruta.foto.url }}" width="50px"></td>
+                  <td><a href="{% url 'ruta' ruta.id %}" class="text-reset">{{ ruta.titulo }}</a></td>
+                  <td>{{ ruta.numero_de_etapas }}</td>
+                  <td>{{ ruta.distancia }}</td>
+                  <td>{{ ruta.elevacion }}</td>
+                  <td>{{ ruta.tiempo_estimado }}</td>
+                  <td>{{ ruta.nivel_dificultad }}</td>
+                  {% if request.user.is_authenticated %}
+                  <td>
+                      <center class="d-inline">
+                           <a href="update/{{ruta.id}}" class="btn btn-warning" id = '{{ruta.id}}'>edit</a><br><br>
+                           <a href="delete/{{ruta.id}}" class="btn btn-danger" id = '{{ruta.id}}'>delete</a>
+                       </center>
+                  </td>
+                  {% else %}
+                  {% endif %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+
+{% endblock content %}

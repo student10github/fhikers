@@ -1,0 +1,177 @@
+{% extends 'ruta/base.html' %}
+
+{% block title_head %}Home{% endblock title_head %}
+
+{% block content %}
+
+    <img width="100%" src="media/carros_de_foc.jpg" class="img-fluid" alt="Responsive image">
+    <br><br><br><br><br><br>
+    <h1 class="text-center alert alert-light">Last Routes</h1>
+    <br><br><br>
+    <div class="card-deck">
+        {% for ruta in shelf_3 %}
+            <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 38rem;">
+              <img class="card-img-top" src="{{ ruta.foto.url }}">
+              <div class="card-body">
+                <h3 class="card-title"><a href="{% url 'ruta' ruta.id %}" class="text-reset">{{ ruta.titulo }}</a></h3>
+                <p class="card-text">{{ ruta.descripcion }}</p>
+               <div class="card-footer bg-transparent border-dark">
+                   <p class="card-title">Country: <br/> {{ruta.id_pais}}</p>
+                   <p class="card-title">Nº Days: <br/> {{ruta.numero_de_etapas}}</p>
+                   <p class="card-title">Distance: <br/> {{ruta.distancia}}</p>
+                   <p class="card-title">Elevation: <br/> {{ruta.elevacion}}</p>
+                   <p class="card-title">Activity Time: <br/> {{ruta.tiempo_estimado}}</p>
+                   <p class="card-title">Difficult: <br/> {{ruta.nivel_dificultad}}</p>
+               </div>
+              </div>
+            </div>
+
+        {% empty %}
+            <h3 class="text-center alert alert-light"><i>Sorry, no routes in this list.</i></h3>
+
+        {% endfor %}
+    </div>
+
+    <div id="about">
+        <br><br><br><br><br><br>
+        <h1 class="text-center alert alert-light">About Us</h1>
+        <br><br><br>
+        <h2 class="alert alert-light">Mission</h2>
+        <p class="card-body">
+            FHikers, Friends to hikking, is a project made for friends to friends. The aim is to create a healthy environment
+            where everyone can enjoy hikking with their friends.
+        </p>
+        <h2 class="alert alert-light">Vision</h2>
+        <p class="card-body">
+            Discover and enjoy a lot of places around the world with the real friends.
+        </p>
+        <h2 class="alert alert-light">Values</h2>
+        <p class="card-body">
+            Respect about Nature, Friends and Yourself.
+        </p>
+        <br><br><br>
+        <h2 class="text-center alert alert-light">Equip 3</h2>
+
+        <div class="d-flex justify-content-md-center">
+            <div class="card" style="width: 18rem; border:0px; margin:3em;">
+              <img src="media/Since_2020.png" class="card-img-top rounded-circle" alt="Imagen del equipo">
+              <div class="card-body text-center">
+                <h3>Fabiola</h3>
+                <p class="card-text">CEO FHikers</p>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem; border:0px;  margin:3em;">
+              <img src="media/Since_2020.png" class="card-img-top rounded-circle" alt="Imagen del equipo">
+              <div class="card-body text-center">
+                <h3>Leandro</h3>
+                <p class="card-text">Junior Programmer</p>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="routes">
+        <br><br><br><br><br><br>
+        <h1 class="text-center alert alert-light">All Routes</h1>
+        <br><br><br>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Country</th>
+              <th scope="col">Days</th>
+              <th scope="col">Distance</th>
+              <th scope="col">Elevation</th>
+              <th scope="col">Time</th>
+              <th scope="col">Difficulty</th>
+              <th scope="col">Fhiker</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for ruta in shelf %}
+            <tr>
+              <th scope="row">{{ ruta.id }}</th>
+              <td><img class="card-img-top" src="{{ ruta.foto.url }}" width="50px"></td>
+              <td><a href="{% url 'ruta' ruta.id %}" class="text-reset">{{ ruta.titulo }}</a></td>
+              <td>{{ ruta.id_pais }}</td>
+              <td>{{ ruta.numero_de_etapas }}</td>
+              <td>{{ ruta.distancia }}</td>
+              <td>{{ ruta.elevacion }}</td>
+              <td>{{ ruta.tiempo_estimado }}</td>
+              <td>{{ ruta.nivel_dificultad }}</td>
+              <td>{{ ruta.id_usuario }}</td>
+            </tr>
+
+          {% empty %}
+            <td colspan="10" align="center"><i>Sorry, no routes in this list.</i></td>
+
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+    <div id="contact">
+        <br><br><br><br><br><br>
+        <h1 class="text-center alert alert-light">Contact</h1>
+        <br><br><br>
+    </div>
+
+
+        <section id="contact_section" class="content-section">
+            <div id="map">
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11974.33174454776!2d2.107851100384435!3d41.38314516985586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498583e4172ff%3A0xba56481b3d354a3c!2sFundaci%C3%B3%20CIM!5e0!3m2!1ses!2ses!4v1606925102325!5m2!1ses!2ses" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <br><br><br>
+            <div class="container well">
+                <div id="contact-content">
+                    <div class="section-heading">
+                        <h1>Contact<br><em>FHikers</em></h1>
+                        <p>Send an email and discover everything about us.
+                        <br>Fabiola will contest all emails.</p>
+
+                    </div>
+                    <div class="section-content">
+                        <form id="contact_form" action="{% url 'contact_form' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                  </fieldset>
+                                </div>
+                                 <div class="col-md-4">
+                                  <fieldset>
+                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <br>
+                                  <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <br>
+                                    <button type="submit" id="form-submit" class="btn btn-primary">Submit</button>
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

@@ -1,0 +1,178 @@
+{% extends 'ruta/rutas.html' %}
+
+{% block content %}
+
+  <div class="card mb-3">
+    <img class="card-img-top" src="{{ ruta_data.foto.url }}" alt="Image from this Route" style="height:400px">
+    <div class="card-body">
+
+      <h2 class="card-title">{{ ruta_data.titulo }}</h2>
+      <hr>
+
+      <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ ruta_data.foto.url }}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Key Facts</h5>
+              <p class="card-title">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th scope="row">ID:</th>
+                        <td></td>
+                        <td>{{ ruta_data.id }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Country:</th>
+                          <td></td>
+                        <td>{{ ruta_data.id_pais }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Days:</th>
+                          <td></td>
+                        <td>{{ ruta_data.numero_de_etapas }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Distance:</th>
+                          <td></td>
+                        <td>{{ ruta_data.distancia }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Elevation:</th>
+                          <td></td>
+                        <td>{{ ruta_data.elevacion }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Time:</th>
+                          <td></td>
+                        <td>{{ ruta_data.tiempo_estimado }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Difficulty:</th>
+                          <td></td>
+                        <td>{{ ruta_data.nivel_dificultad }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Fhiker:</th>
+                          <td></td>
+                        <td>{{ ruta_data.id_usuario }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="card-title">Description</h5>
+      <p class="card-text">{{ ruta_data.descripcion }}</p>
+      <p class="card-text"><small class="text-muted">Author: {{ ruta_data.id_usuario }}</small></p>
+
+      {% if request.user.is_authenticated %}
+        <br><br><br>
+        <p>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Create Stage
+          </a>
+        </p>
+        <div id="collapseExample" class="collapse card card-body container well card">
+              <h5 style="padding-top:1em;">Create Stage</h5>
+              {% include 'ruta/etapa.html' %}
+        </div>
+      {% endif %}
+      <br><br><br>
+
+
+      {% for stage in etapa_data %}
+        <div class="card mb-3 shadow p-3 mb-5 bg-white rounded">
+          <h5 class="card-header">Stage {{ stage.numero_etapa }}: {{ stage.titulo_etapa }}.</h5>
+          <div class="card-body">
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">{{ stage.descripcion_etapa }}</p>
+            {% if request.user.is_authenticated %}
+              <a href="update_stage/{{stage.id}}" class="btn btn-warning" id = '{{stage.id}}'>Edit</a>
+              <a href="delete_stage/{{stage.id}}" class="btn btn-danger" onClick="return confirm('¿Are you sure to delete {{ stage.titulo_etapa }}?');" id = '{{stage.id}}'>Delete</a>
+            {% endif %}
+          </div>
+        </div>
+        <br>
+      {% endfor %}
+      <br><br><br>
+
+    </div>
+
+
+<!--    Posts  -->
+
+<center>
+    <h1>Posts</h1>
+    <br><br>
+    {% for post in post_data %}
+      <div class="card bg-light mb-3" style="max-width: 98%;" align="left">
+        <div class="card-header">
+          <strong>{{ post.title }}</strong>
+          <p class="text-right">Route reference: {{ post.id_ruta }}</p>
+        </div>
+          <div class="card-body">
+            <p class="card-text"><small class="text-muted">{{ post.creation_date }}</small></p>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="text-right">Author: {{ post.id_usuario }}</p>
+            {% if request.user.is_authenticated %}
+            <div align="right">
+              <a href="update_post/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>Edit</a>
+              <a href="delete_post/{{post.id}}" class="btn btn-danger" onClick="return confirm('¿Are you sure to delete {{ post.titulo_etapa }}?');" id = '{{post.id}}'>Delete</a>
+            </div>
+            {% endif %}
+          </div>
+      </div>
+      <br>
+    {% endfor %}
+    <br><br><br>
+
+
+
+<!--     {% for post in post_data %}-->
+<!--        <div class="card mb-3 shadow p-3 mb-5 bg-white rounded">-->
+<!--          <h5 class="card-header">Post : {{ post.title }}.</h5>-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Description:</h5>-->
+<!--            <p class="card-text">{{ post.content }}</p>-->
+<!--            {% if request.user.is_authenticated %}-->
+<!--              <a href="update_post/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>Edit</a>-->
+<!--              <a href="delete_post/{{post.id}}" class="btn btn-danger" onClick="return confirm('¿Are you sure to delete {{ post.titulo_etapa }}?');" id = '{{post.id}}'>Delete</a>-->
+<!--            {% endif %}-->
+<!--            <p class="card-text">Date: {{ post.creation_date }} , Route reference: {{ post.id_ruta }}, Author: {{ post.id_usuario }}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--     {% endfor %}-->
+<!--     <br><br><br>-->
+
+
+</center>
+
+
+      <div class="card-body">
+        {% if request.user.is_authenticated %}
+          <h5 class="card-title">Create a new post</h5>
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Create Post
+            </a>
+          </p>
+          <div id="collapseExample2" class="collapse card card-body container well card">
+                <h5 style="padding-top:1em;">Create Post</h5>
+                {% include 'ruta/upload_post.html' %}
+          </div>
+        {% endif %}
+        <br><br><br>
+      </div>
+
+
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,99 @@
+{% extends 'ruta/rutas.html' %}
+
+
+{% block content %}
+
+
+<!--('foto','titulo','descripcion','distancia','elevacion','tiempo_estimado','nivel_dificultad','numero_de_etapas', 'id_pais', 'id_usuario')-->
+
+<div class="card mb-3">
+  <img class="card-img-top" src="{{ ruta_data.foto.url }}" alt="Image from this Route" style="height:400px">
+  <div class="card-body">
+
+    <h2 class="card-title">{{ ruta_data.titulo }}</h2>
+    <hr>
+
+    <div class="card mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ ruta_data.foto.url }}" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Key Facts</h5>
+            <p class="card-title">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th scope="row">ID:</th>
+                      <td></td>
+                      <td>{{ ruta_data.id }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Country:</th>
+                        <td></td>
+                      <td>{{ ruta_data.id_pais }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Days:</th>
+                        <td></td>
+                      <td>{{ ruta_data.numero_de_etapas }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Distance:</th>
+                        <td></td>
+                      <td>{{ ruta_data.distancia }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Elevation:</th>
+                        <td></td>
+                      <td>{{ ruta_data.elevacion }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Time:</th>
+                        <td></td>
+                      <td>{{ ruta_data.tiempo_estimado }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Difficulty:</th>
+                        <td></td>
+                      <td>{{ ruta_data.nivel_dificultad }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Fhiker:</th>
+                        <td></td>
+                      <td>{{ ruta_data.id_usuario }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="card-title">Description</h5>
+    <p class="card-text">{{ ruta_data.descripcion }}</p>
+    <p class="card-text"><small class="text-muted">Author: {{ ruta_data.id_usuario }}</small></p>
+
+    <div class="card">
+      <h5 class="card-header">Stage 1: Cavallers Reservoir - Restanca Refuge.</h5>
+      <div class="card-body">
+        <h5 class="card-title">Cavallers Reservoir</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        {% if request.user.is_authenticated %}
+          <a href="#" class="btn btn-primary">Edit</a>
+          <a href="#" class="btn btn-primary">Delete</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+    
+</div>
+
+
+
+
+{% endblock content %}
