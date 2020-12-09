@@ -287,58 +287,9 @@ def contact_form(request, *args, **kwargs):
         subject='Mensaje de usuario - ' + subject,
         body=body,
         from_email=email,
-        to=['student10github@gmail.com'],
+        to=['emailgithub@gmail.com'],
     )
     email_message.content_subtype = 'html'
     email_message.send()
 
     return redirect('home')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
